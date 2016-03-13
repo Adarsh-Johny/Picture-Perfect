@@ -1,0 +1,35 @@
+<div >
+    <div class="vertical menu">
+
+        <li><a ng-click="accordionClick()" >
+            <i class="{{data.SectionIcon}}"></i>
+            {{data.SectionName}}
+            <i class="fa fa-angle-down arrow"></i>
+            <i class="fa fa-angle-up arrow"></i>
+        </a>
+        <li>
+
+        <ul class="accordion-child vertical menu">
+            <li ui-sref-active="active" ng-repeat="subsection in data.SubSection">
+                <a ui-sref="{{subsection.Link}}">{{subsection.Name}}</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<!--
+<div>
+  <ul class="vertical menu" data-accordion-menu>
+    <li>
+      <a  ng-click="accordionClick()" >
+        <i class="{{data.SectionIcon}}"></i>
+        {{data.SectionName}}
+      </a>
+      <ul class="menu vertical nested">
+        <li ui-sref-active="active" ng-repeat="subsection in data.SubSection" >
+          <a ui-sref="{{subsection.Link}}">{{subsection.Name}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div> -->

@@ -1,0 +1,20 @@
+<div class="fz-file" >
+    <div class="fz-file-display" ng-class="CheckforError()?'has-error':''"  ng-click="fileUploadButtonClick(); $event.stopPropagation();">
+        <div>
+            <span ng-if="fileLength == 0" class="fz-file-placeholder">{{filePlaceholder}}</span>
+            <span ng-if="fileLength > 0" class="fz-file-name">{{fileName}}</span>
+        </div>
+        <div ng-if="!readonly">
+            <span class="fz-file-button">{{buttonText}}</span>
+        </div>
+    </div>
+    <input ng-model="model"
+           ng-required="required"
+           msg-required="{{msgRequired}}"
+           class="fz-file-input"
+           type="file"
+           name="{{name}}"
+           server-id="fileUpload"
+           file-size-validator
+           msg-file-size-validator="{{msgMaxSize}}" />
+</div>

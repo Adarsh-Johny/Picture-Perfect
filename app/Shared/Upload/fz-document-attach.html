@@ -1,0 +1,101 @@
+
+<div class="fz-form-content" id="documents-widget">
+
+    <form class="fz-form" name="addNewDocument" novalidate="novalidate" xt-form xt-form-server="{{ServerErrorMessages}}">
+        <xt-server-validation-summary></xt-server-validation-summary>
+        <xt-validation-summary></xt-validation-summary>
+        <div>
+          <div ng-if="uploadType === 'BATCH COURSE STUDENT' || uploadType === 'BATCH COURSE TIMETABLE'">
+              <div>
+              <label>Courses</label>
+              <ui-select  name="courses"
+                          ui-select-required="true"
+                          msg-ui-select-required="Courses is mandatory"
+                          ng-model="uploadModel.CourseID"
+                          theme="select2"
+                          title="State">
+                  <ui-select-match>
+                      {{$select.selected.CourseName}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="course.CourseID as course in uiState.Courses  | filter: $select.search">
+                      {{course.CourseName}}
+                  </ui-select-choices>
+              </ui-select>
+              </div>
+              <div>
+              <label>Divisions</label>
+              <ui-select name="division"
+                         ng-model="uploadModel.DivisionID"
+                         theme="select2"
+                         style="width: 100%;"
+                         sortable="true"
+                         title="Choose Division">
+                  <ui-select-match placeholder="Select Division">
+                      {{$select.selected.DivisionName}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="division.DivisionID as division in uiState.Divisions | filter:$select.search" allow-clear="true">
+                      {{division.DivisionName}}
+                  </ui-select-choices>
+              </ui-select>
+            </div>
+              <div>
+                <label>Batches</label>
+                <ui-select name="batches"
+                           ng-model="uploadModel.BatchID"
+                           theme="select2"
+                           ui-select-required="true"
+                           msg-ui-select-required="Batches is mandatory"
+                           style="width: 100%;"
+                           sortable="true"
+                           title="Choose Batches">
+                    <ui-select-match placeholder="Select Batches">
+                       {{$select.selected.BatchStartYear}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="batch.BatchID as batch in uiState.Batches | filter:$select.search" allow-clear="true">
+                        {{batch.BatchStartYear}}
+                      </ui-select-choices>
+                </ui-select>
+            </div>
+          </div>
+          <div>
+            <label>Notes</label>
+            <textarea ng-model=uploadModel.Note required="true" msg-required="Notes is mandatory"></textarea>
+          </div>
+          <div>
+                <label>Upload File</label>
+                <fz-file ng-model="uploadModel.File"
+                required msg-required="You have not chosen any document"
+                max-size="5MB"
+                label="Document upload"
+                msg-max-size="You cannot upload a file with size greater than 5MB">
+              </fz-file>
+            </div>
+        </div>
+        <ul>
+            <li><fz-submit value="Upload"
+              name="Upload"
+              function="submitDocument()">
+            </fz-submit>
+          </li>
+        </ul>
+    </form>
+   
+<!-- Grid Section -->
+
+<div>
+  <fz-grid
+    model="model"
+    ongridload="onLoad()"
+    onrowclick="ViewUploadErrors(row)">
+
+    <grid-pagination></grid-pagination>
+    <grid>
+      <grid-column title="Date" field="LastUpdatedOn" filter="true"></grid-column>
+      <grid-column title="Document Name" field="DocumentName" filter="true"></grid-column>
+      <grid-column title="Upload Status" field="UploadStatus" filter="true"></grid-column>
+        <grid-column title="Additional Info" field="Note" filter="true"></grid-column>
+    </grid>
+  </fz-grid>
+</div>
+
+</div>

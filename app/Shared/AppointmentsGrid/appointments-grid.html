@@ -1,0 +1,87 @@
+﻿<div class="fz-title flex-row padding p-small border">
+  <ul class="fz-tab flex-column">
+    <li ng-class="{active:showAllApptsGrid}">
+        <a ng-click="showAllAppts()">All Appointments</a></li>
+        <li ng-class="{active:!showAllApptsGrid}" fz-ui-trim="VIEW" privilege-id="41">
+            <a ng-click="showMissedAppts()">Missed/Pending</a></li>
+        </ul>
+    </div>
+    <!-- All Appts Grid -->
+    <div ng-if="showAllApptsGrid">
+        <fz-grid
+        model ="allapptsmodel"
+        ongridload ="loadAllApptsGrid()"
+        onfilter ="filterAllApptsGrid(filter)"
+        onaction ="gridCommand(action)">
+        <grid-pagination></grid-pagination>
+        <grid-actions>
+        <dropdown-filter>
+        <dropdown-filter-option title="All" value="ALL"></dropdown-filter-option>
+        <dropdown-filter-option title="Past" value="PAST"></dropdown-filter-option>
+        <dropdown-filter-option title="Upcoming" value="UPCOMING"></dropdown-filter-option>
+    </dropdown-filter>
+    <dropdown-action>
+    <dropdown-action-option title="Scheduled" value="Scheduled" ui-trim="Edit"></dropdown-action-option>
+    <dropdown-action-option title="Confirmed" value="Confirmed" ui-trim="Edit"></dropdown-action-option>
+    <dropdown-action-option title="At Reception" value="At Reception" ui-trim="Edit"></dropdown-action-option>
+    <dropdown-action-option title="In Operatory" value="In Operatory" ui-trim="Edit"></dropdown-action-option>
+    <dropdown-action-option title="Checked Out" value="Checked Out" ui-trim="Edit"></dropdown-action-option>
+    <dropdown-action-option title="Missed" value="Missed" ui-trim="Edit"></dropdown-action-option>
+</dropdown-action>
+
+</grid-actions>
+
+
+
+<grid >
+    <grid-column title="Appt. Date" field="AppointmentDate" filter="true"></grid-column>
+    <grid-column title="Appt. Time" field="AppointmentTime" filter="true"></grid-column>
+    <grid-column title="Patient" field="Patient" filter="true" ></grid-column>
+    <grid-column title="Appt. Type" field="AppointmentType" filter="true"></grid-column>
+    <grid-column title="Provider" field="Provider" filter="true"></grid-column>
+    <grid-column title="Location" field="Location" filter="true"></grid-column>
+    <grid-column title="Operatory" field="Operatory" filter="true"></grid-column>
+    <grid-column title="Status" field="Status" filter="true"></grid-column>
+</grid>
+
+
+<grid-row-selection></grid-row-selection>
+
+</fz-grid>
+
+</div>
+
+<!-- Missed/pending Appts Grid -->
+
+
+<div ng-if="!showAllApptsGrid">
+
+    <fz-grid model="missedapptmodel"
+    ongridload="loadMissedApptsGrid()"
+     onfilter ="filterMissedApptsGrid(filter)"
+    onrowclick ="showNewAppointment(row)"
+    onlinkclick = "deleteRescheduledAppt(colname,row)">
+    <grid-pagination></grid-pagination>
+            <grid-actions>
+        <dropdown-filter>
+        <dropdown-filter-option title="All" value="ALL"></dropdown-filter-option>
+        <dropdown-filter-option title="Missed" value="MISSED"></dropdown-filter-option>
+        <dropdown-filter-option title="Pending" value="PENDING"></dropdown-filter-option>
+    </dropdown-filter>
+</grid-actions>
+
+    <grid>
+        <grid-column title="Date" field="Date" filter="true"></grid-column>
+        <grid-column title="Appt. Type" field="AppointmentType" filter="true"></grid-column>
+        <grid-column title="Patient" field="PatientName" filter="true"></grid-column>
+        <grid-column title="Start Time" field="StartTime" filter="true"></grid-column>
+        <grid-column title="Duration" field="Duration" filter="true"></grid-column>
+        <grid-column title="Provider" field="ProviderName" filter="true"></grid-column>
+        <grid-column title="Location" field="LocationName" filter="true"></grid-column>
+        <grid-column title="Status" field="Status" filter="true"></grid-column>
+        <grid-column title="Delete" field="Delete" filter="false" permission="{{deletePermission()}}"></grid-column>
+
+    </grid>
+</fz-grid>
+
+</div>

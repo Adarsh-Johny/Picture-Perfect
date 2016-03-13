@@ -1,0 +1,7 @@
+﻿<div ng-dropover="week-picker" ng-dropover-options="dropoverOptions">
+    {{startDate | date: 'dd, MMM yyyy'}} - {{endDate | date: 'dd, MMM yyyy'}}
+    <div ng-dropover-contents style="z-index:1;">
+        <div ng-model="date"
+             fz-week-picker="dateOptions" start-date="startDate"></div>
+    </div>
+</div>

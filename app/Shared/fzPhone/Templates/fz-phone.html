@@ -1,0 +1,36 @@
+<div>
+    <div ng-show="!readonly">
+        <div class="fz-dual">
+            <div class="large">
+                <input name="phone{{name}}" model-view-value="true"
+                       ui-mask="(999) 999-9999" ui-options="{clearOnBlur: false}"
+                       type="text"
+                       ng-model="phone"
+                       maxlength="14"
+                       msg-parse="Invalid {{label}} format"
+                       ng-required="required || ((phone == null || phone=='')&& (phoneExt!= null && phoneExt!='' ))"
+                       msg-required="{{label}} is required."
+                       ng-minlength=10
+                       msg-minlength="{{label}} must be 10 characters"
+                       ng-maxlength=14
+                       msg-maxlength="{{label}} must be 10 characters" />
+            </div>
+            <div>
+                <input name="ext{{name}}" type="text"
+                       ng-model="phoneExt"
+                       maxlength="4"
+                       placeholder="EXT"
+                       ng-maxlength=4
+                       ng-minlength="4"
+                       msg-minlength="Ext must be 4 characters"
+                       msg-maxlength="{{label}} Ext must be less than 5 characters"
+                       ng-pattern=" /^[0-9]+$/"
+                       msg-pattern="{{label}} Ext must be numeric" fz-number>
+                <input type="hidden" ng-model="model" />
+            </div>
+        </div>
+    </div>
+    <div ng-show="readonly">
+        {{model}}
+    </div>
+</div>

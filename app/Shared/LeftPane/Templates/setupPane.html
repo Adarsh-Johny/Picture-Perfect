@@ -1,0 +1,62 @@
+<div>
+    <!--<div class="fz-sidebar">
+      <div class="fz-user-panel padding p-medium border flex-row">
+        <div class="fz-user-image fz-user-image-blue  fz-user-image-no-border">
+          <img src="/images/cdg-logo.png">
+          <a class="fz-user-image-edit">Edit</a>
+        </div>
+        <div class="fz-user-panel-text">
+          <h2 class="color-dark">{{User.PracticeName}} ({{User.AccountID}})</h2>
+        </div>
+      </div>
+      <div class="fz-sidebar-menu-wrapper card">
+          <ul class="fz-sidebar-menu">
+              <li ui-sref-active="active" ng-if="CheckPrivilege(2)">
+                  <a ui-sref=".basicinformation">
+                      <i class="fa fa-fw fa-info-circle"></i>Basic Information
+                  </a>
+              </li>
+              <li ui-sref-active="active" ng-if="CheckPrivilege(3)">
+                  <a ui-sref=".timetableuplaod"><i class="fa fa-fw fa-map-marker"></i>Time Table Upload</a>
+              </li>
+              <accordion data="{SectionName:'Administration',PrivilegeID : 2,
+           SectionIcon: 'fa fa-fw fa-anchor',
+           SubSection: [{Name:'Profiles',Link:'.profiles',PrivilegeID : 5},
+                        {Name:'Users',Link:'.users',PrivilegeID : 6}]}">
+              </accordion>
+          </ul>
+        <div class="divider"></div>
+
+      </div>
+    </div>-->
+
+    <div class="sidebar">
+        <div class="profile-group">
+            <div class="profile-pic-group">
+                <img class="profile-pic" src="http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png">
+                <div class="profile-controls">
+                    <a class="logout" href="login.html"><i class="fa fa-power-off alert"></i></a>
+                    <a class="help"><i class="fa fa-question warning"></i></a>
+                    <a class="setup" ui-sref="app.setup"><i class="fa fa-cog primary"></i></a>
+                </div>
+            </div>
+            <div class="profile-title">{{User.Name}}</div>
+            <div class="profile-title subheader"><small>Lecturer</small></div>
+        </div>
+
+        <ul class="vertical menu" data-accordion-menu>
+            <ul class="fz-sidebar-menu">
+                <li><a ui-sref="app.user.overview"><i class="fa fa-fw fa-eye"></i>Home</a></li>
+                <accordion data="{SectionName:'Time Table',SectionIcon: 'fa fa-fw fa-check-square-o', SubSection: [{Name:'Upload',Link:'.timetableuplaod' ,PrivilegeID : 5},
+                    {Name:'View',Link:'.timetablebasicview'}]}">
+                </accordion>
+                <accordion data="{SectionName:'Student',SectionIcon: 'fa fa-fw',
+                SubSection: [{Name:'Upload',Link:'.upload' ,PrivilegeID : 5},
+                    {Name:'View',Link:'#'}]}">
+                </accordion>
+                <li><a href="#">Others</a></li>
+            </ul>
+        </ul>
+    </div>
+
+</div>

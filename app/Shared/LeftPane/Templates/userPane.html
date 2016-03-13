@@ -1,0 +1,45 @@
+<div class="sidebar">
+      <div class="profile-group">
+        <div class="profile-pic-group">
+          <img class="profile-pic" src="http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png">
+           <div class="profile-controls">
+          <a class="logout" href="login.html"><i class="fa fa-power-off alert"></i></a>
+          <a class="help"><i class="fa fa-question warning"></i></a>
+          <a class="setup" ui-sref="app.setup"><i class="fa fa-cog primary"></i></a>
+    </div>
+    </div>
+         <div class="profile-title">{{User.Name}}</div>
+          <div class="profile-title subheader"><small>Lecturer</small></div>
+      </div>
+
+      <ul class="vertical menu" data-accordion-menu>
+        <!-- <li class=""><a ui-sref=".upload">Upload</a></li> -->
+        <!-- <li class="fa fa-fw fa-eye"><a href="#">Overview</a></li> -->
+
+        <!-- <li>
+          <a href="#">Batches</a>
+          <ul class="menu vertical nested" >
+            <li ui-sref-active="active"><a href="lecturer-batches.html">AB2015</a></li>
+            <li><a>AB2014</a></li
+            <li><a>DC2015</a></li>
+          </ul>
+        </li> -->
+
+    <ul class="vertical menu">
+      <li ><a ui-sref=".overview" href="#"><i class="fa fa-fw fa-eye"></i>Overview</a></li>
+          <!-- <li ><a ui-sref=".upload"><i class="fa fa-fw fa-eye"></i>Overview</a></li> -->
+       
+        <accordion data="{SectionName:'Student',
+       SectionIcon: 'fa fa-fw fa-check-square-o',
+       SubSection: [{Name:'Upload',Link:'.upload'},
+                    {Name:'View Students',Link:'app.user.students'},
+                  {Name:'Student Attendance',Link:'app.user.attendancerecord'},
+                  {Name:'Absent List',Link:'app.user.absentlist'}]}">
+                </accordion>
+
+      <li><a ui-sref=".overview" href="#">Others</a></li>
+    </ul>
+
+
+    </ul>
+  </div>

@@ -1,0 +1,48 @@
+<div class="fz-sidebar">
+  <div class="fz-user-panel padding p-medium border flex-row">
+    <div class="fz-user-image fz-user-image-blue  fz-user-image-no-border">
+      <img src="/images/cdg-logo.png">
+      <a class="fz-user-image-edit">Edit</a>
+    </div>
+    <div class="fz-user-panel-text">
+      <h2 class="color-dark">Mallory Circle</h2>
+      <span class="user-label color-green border-green">Celebration Dental Group
+        <</span>
+    </div>
+  </div>
+  <div class="fz-sidebar-menu-wrapper border">
+    <ul class="fz-sidebar-menu">
+      <li class="active"><a ui-sref="setup"><i class="fa fa-fw fa-eye"></i>Overview</a></li>
+    </ul>
+    <div class="divider"></div>
+    <ul class="fz-sidebar-menu">
+      <li class=""><a ui-sref="setup"><i class="fa fa-fw fa-stethoscope"></i>Scheduler</a></li>
+      <accordion data="{SectionName:'Billing',
+             SectionIcon: 'fa fa-fw fa-user-plus',
+             SubSection: [{Name:'All Claims',Link:'#'},
+                          {Name:'Claim Payments',Link:'#'},
+                          {Name:'Transactions',Link:'#'},
+                          {Name:'Receivables',Link:'#'},
+                          {Name:'Receipts',Link:'#'}]}">
+      </accordion>
+      <li class=""><a ui-sref="setup"><i class="fa fa-fw fa-unlock-alt"></i>Authorization</a></li>
+      <li class=""><a ui-sref="setup"><i class="fa fa-fw fa-university"></i>Eligibility</a></li>
+    </ul>
+    <div class="divider"></div>
+    <ul class="fz-sidebar-menu">
+      <li class=""><a href="setup-communication"><i class="fa fa-fw fa-users"></i>Patients</a></li>
+      <li class=""><a href="workflow"><i class="fa fa-fw fa-book"></i>Documents</a></li>
+      <li class=""><a href="medical-alerts"><i class="fa fa-fw fa-file-text-o"></i>Reports</a></li>
+    </ul>
+    <div class="divider"></div>
+    <ul class="fz-sidebar-menu">
+      <accordion data="{SectionName:'Settings',
+             SectionIcon: 'fa fa-fw fa-cog',
+             SubSection: [{Name:'Basic Information',Link:'#'},
+                          {Name:'Working Hours',Link:'#'},
+                          {Name:'Operatiory Settings',Link:'#'},
+                          {Name:'Holidays',Link:'#'}]}">
+      </accordion>
+    </ul>
+  </div>
+</div>

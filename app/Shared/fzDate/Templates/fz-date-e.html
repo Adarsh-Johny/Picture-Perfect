@@ -1,0 +1,28 @@
+<input  class="fz-date-e {{::dateClass}}"
+        type="{{::dateType}}"
+        name="{{::dateName}}"
+
+        ng-model="model"
+        ng-model-options="{allowInvalid: true}"
+
+        ng-required="dateRequired"
+        msg-required="{{messageRequired}}"
+
+        ng-readonly="dateReadonly"
+        ng-disabled="dateDisabled"
+
+        model-view-value="true"
+
+        ui-mask="{{dateMask}}"
+        ui-mask-placeholder
+        ui-mask-placeholder-char="{{dateMaskPlaceholder}}"
+        ui-options="{{dateMaskOptions}}"
+        msg-parse="{{messageMask}}"
+
+        msg-custom-pattern="{{messagePattern}}"
+
+        ng-change="datechange();customDateChange()"
+
+        msg-min-date={{messageMinDate}}
+        msg-max-date={{messageMaxDate}}
+        msg-date-custom="{{messageCustom}}" />

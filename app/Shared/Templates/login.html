@@ -1,0 +1,40 @@
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <div class="dropdown menu" data-dropdown-menu>
+      <div class="menu-text">Erudite</div>
+    </div>
+  </div>
+</div>
+
+
+<div class=" login-page-content">
+  <div class="medium-6 large-4  columns">
+
+    <form name="login" xt-form xt-form-server="{{loginErrorMessage}}" novalidate="novalidate" ng-init="Login.CollageID=10001;">
+      <div class="column log-in-form">
+        <h5 class="">Log in with your Erudite account</h5>
+        <xt-validation-summary></xt-validation-summary>
+        <xt-server-validation-summary></xt-server-validation-summary>
+        <label>User ID
+          <input placeholder="Enter User ID" name="username" ng-model="Login.Email" type="text" required msg-required="Please enter email" maxlength="255" msg-maxlength="Email/Username should be less than 255 characters">
+        </label>
+        <label>Password
+          <input placeholder="Enter Password" name="password" ng-model="Login.Password" type="password" required msg-required="Please enter password" maxlength="255">
+        </label>
+        <!-- <p><a type="submit" class="button expanded">Log In</a></p> -->
+        <p><fz-submit value="Submit" class-list="button expanded" function="Submit(login.$valid)"></fz-submit></p>
+        <p class="text-center"><a ui-sref=".forgotpassword">Forgot your password?</a></p>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="row">
+    <div class="small-12 columns">
+      <p class="copywrite">Edurite © 2016</p>
+    </div>
+  </div>
+</footer>

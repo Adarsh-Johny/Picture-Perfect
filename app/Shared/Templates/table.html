@@ -1,0 +1,30 @@
+<div class="tab-content">
+    <div class="basic-title group">
+        <div class="basic-action-btn-container group">
+            <h2>{{Heading}}</h2>
+        </div>
+        <div class="pagination-container group">
+            <ul class="pagination group">
+                <li><a ng-click="prevPage()" ng-disabled="gridPrevDisabled"><i class="fa fa-chevron-left"></i></a></li>
+                <div class="result-count-pagination"> {{gridData.from}} to {{gridData.to}} of {{gridData.total}} entries</div>
+                <li><a ng-click="nextPage()" ng-disabled="gridNextDisabled"><i class="fa fa-chevron-right"></i></a></li>
+            </ul>
+        </div>
+    </div>
+  <table class="custom-table" id="location-all-table">
+    <thead>
+      <tr>
+        <th ng-repeat="values in data.title">
+          <div  class="th-text">{{values}}</div>
+        </th>
+      </tr>
+      <tr>
+        <th ng-repeat="values in AllData.title"><input type="text" class="custom-form-control"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="value in AllData.gridData" ng-click="locationStyle={display: 'block'}">
+        <td ng-repeat="n in value track by $index">{{n}}</td>
+      </tr>
+    </tbody>
+  </table>

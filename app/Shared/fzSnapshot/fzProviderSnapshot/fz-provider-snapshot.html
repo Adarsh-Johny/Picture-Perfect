@@ -1,0 +1,99 @@
+<div fz-dropdown="bottom-left">
+  <style>
+    .ui-tabs .active {
+      background-color: seagreen;
+    }
+  </style>
+  <a ng-click="getProviderSnapshotDetails(id)">{{value}}</a>
+  <div fz-dropdown-content class="border border-blue" style="width: 500px;">
+    <div class="fz-user-panel padding p-medium flex-row no-margin">
+      <div class="fz-user-image fz-user-image-magenta"></div>
+      <div class="fz-user-panel-text flex-column">
+        <h3 class="color-blue transform-upper">{{ProviderSnapshot.ProviderProfile.ProviderName}}</h3>
+        <h3 class="color-blue transform-upper text-small">{{ProviderSnapshot.ProviderProfile.Speciality}}</h3>
+      </div>
+      <ul class="flex-row align-end">
+        <li><button class="fz-button fz-button-blue">Details</button></li>
+      </ul>
+    </div>
+    <div class="divider divider-blue no-margin"></div>
+    <!-- <div class="fz-title fz-title-group padding p-medium">
+      <h2>{{ProviderSnapshot.ProviderProfile.ProviderName}}</h2>
+      {{ProviderSnapshot.ProviderProfile.Speciality}}
+    </div> -->
+    <div class="flex-row no-margin">
+      <ul class="fz-tabs padding p-small border border-right">
+        <li ng-class="tab.active=='PROFILE'?'active':''" ng-click="tab.active='PROFILE'"><a class="color-orange">Profile</a></li>
+        <li ng-class="tab.active=='PRODUCTION'?'active':''" ng-click="tab.active='PRODUCTION'"><a class="color-orange">Production</a></li>
+        <li ng-class="tab.active=='APPOINTMENTS'?'active':''" ng-click="tab.active='APPOINTMENTS'"><a class="color-orange">Appointments</a></li>
+        <li ng-class="tab.active=='BILLING'?'active':''" ng-click="tab.active='BILLING'"><a class="color-orange">Billing</a></li>
+      </ul>
+      <!-- <ul style="padding: 10px; border-right: solid 1px #ccc" class="ui-tabs">
+        <li ng-class="tab.active=='PROFILE'?'active':''" ng-click="tab.active='PROFILE'"><a>PROFILE</a></li>
+        <li ng-class="tab.active=='PRODUCTION'?'active':''" ng-click="tab.active='PRODUCTION'"><a>PRODUCTION</a></li>
+        <li ng-class="tab.active=='APPOINTMENTS'?'active':''" ng-click="tab.active='APPOINTMENTS'"><a>APPOINTMENTS</a></li>
+        <li ng-class="tab.active=='BILLING'?'active':''" ng-click="tab.active='BILLING'"><a>BILLING</a></li>
+      </ul> -->
+      <!-- PROFILE -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='PROFILE'">
+        <div class="fz-group">
+          <label>Provider ID</label>
+          <div>{{ProviderSnapshot.ProviderProfile.ProviderID}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Provider Name</label>
+          <div>{{ProviderSnapshot.ProviderProfile.ProviderName}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Linked Locations</label>
+          <div>{{ProviderSnapshot.ProviderProfile.LinkedLocations}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Linked Patients</label>
+          <div>{{ProviderSnapshot.ProviderProfile.LinkedPatients}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Phone 1</label>
+          <div>{{ProviderSnapshot.ProviderProfile.Phone1}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Phone 2</label>
+          <div>{{ProviderSnapshot.ProviderProfile.Phone2}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Email</label>
+          <div>{{ProviderSnapshot.ProviderProfile.Email}}</div>
+        </div>
+      </div>
+      <!-- PROFILE -->
+      <!-- PRODUCTION -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='PRODUCTION'">
+        <div class="fz-group">
+
+        </div>
+      </div>
+      <!-- PRODUCTION -->
+      <!-- APPOINTMENTS -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='APPOINTMENTS'">
+        <div class="fz-title fz-title-group">
+          <h2>Working Hours (Today)</h2>
+        </div>
+        <div class="fz-group" ng-repeat="(locName, locWorkingHours) in ProviderSnapshot.AppointmentsModel.Loc">
+          <label>{{locName}}</label>
+          <div>
+            <div ng-repeat="locWorkingHour in locWorkingHours">{{locWorkingHour.WorkingTime}}</div>
+          </div>
+        </div>
+        <!--{{ProviderSnapshot.AppointmentsModel.Loc}}-->
+      </div>
+      <!-- APPOINTMENTS -->
+      <!-- BILLING -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='BILLING'">
+        <div class="fz-group">
+
+        </div>
+      </div>
+      <!-- BILLING -->
+    </div>
+  </div>
+</div>

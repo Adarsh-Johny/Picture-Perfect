@@ -1,0 +1,60 @@
+<div class="fz-inbox">
+  <div class="fz-inbox-header" ng-if="model.sort.visible || model.view.visible">
+
+    <div fz-dropdown="bottom-right">
+      <a>Actions <i class="fa fa-angle-down"></i></a>
+      <div fz-dropdown-content>
+        <ul class="dropdown-menu" style="min-width: 134px;">
+          <li fz-dropdown="left-top" ng-if="model.sort">
+            <a><i class="fa fa-angle-left left"></i> Sort By </a>
+            <div fz-dropdown-content>
+              <ul class="dropdown-menu">
+                <li ng-repeat="option in model.sort.sortOptions" ng-click="inboxSortClick(option);" ng-class="model.sort.sortValue == option.value ? 'active':'' ">
+                  <a ng-click="closeDropdown()">{{option.label}} <i class="fa fa-check right tick"></i></a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li fz-dropdown="left-top" ng-if="model.view">
+            <a><i class="fa fa-angle-left left"></i> View By </a>
+            <div fz-dropdown-content>
+              <ul class="dropdown-menu">
+                <li ng-repeat="option in model.view.viewOptions" ng-click="model.view.viewValue = option.value; inboxResetUpdate();" ng-class="model.view.viewValue == option.value ? 'active':'' ">
+                  <a ng-click="closeDropdown()">{{option.label}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div fz-dropdown="bottom-right" ng-if="model.sort">
+      <a>Sort By <i class="fa fa-angle-down"></i></a>
+      <div fz-dropdown-content>
+        <ul class="dropdown-menu">
+          <li ng-repeat="option in model.sort.sortOptions" ng-click="inboxSortClick(option);" ng-class="model.sort.sortValue == option.value ? 'active':'' ">
+            <a ng-click="closeDropdown()">{{option.label}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div fz-dropdown="bottom-right" ng-if="model.view">
+      <a>View By <i class="fa fa-angle-down"></i></a>
+      <div fz-dropdown-content>
+        <ul class="dropdown-menu">
+          <li ng-repeat="option in model.view.viewOptions" ng-click="model.view.viewValue = option.value; inboxResetUpdate();" ng-class="model.view.viewValue == option.value ? 'active':'' ">
+            <a ng-click="closeDropdown()">{{option.label}}</a>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+
+  </div>
+  <div class="fz-inbox-search" ng-show="model.search.visible">
+    <input type="text" class="custom-form-control" ng-model="model.search.searchValue" ng-enter="inboxResetUpdate();">
+    <a class="grid-filter-button" ng-click="inboxResetUpdate()"></a>
+  </div>
+  <ul class="fz-inbox-content" fz-scroll-action="inboxUpdate()" ng-transclude></ul>
+</div>

@@ -1,0 +1,38 @@
+{
+  "local": {
+    "ERUDITE_CONFIG": {
+      "baseUrl": "http://localhost:46551/",
+      "gridPageSize": 15,
+      "xtForm" : {
+        "validationSummaryTemplate":
+                "<div data-ng-show=\"showErrors\" class=\"error-wrapper\">\n   <label class=\"error\" data-ng-repeat=\"error in errors\" data-key=\"{{error.key}}\">\n       <span data-ng-show=\"showLabel\" data-ng-bind=\"error.message\"></span>\n   </label>\n</div>"
+      }
+    },
+    "GRID_PAGE_SIZE":15,
+    "MOCK_CONFIG": { "ignorePaths": ["192.168.2.200:81","localhost:46551"] }
+  },
+  "mock": {
+    "ERUDITE_CONFIG": {
+      "baseUrl": "http://mock/",
+      "gridPageSize": 15,
+      "xtForm" : {
+        "validationSummaryTemplate":
+                "<div data-ng-show=\"showErrors\">\n   <label class=\"error\" data-ng-repeat=\"error in errors\" data-key=\"{{error.key}}\">\n       <span data-ng-show=\"showLabel\" data-ng-bind=\"error.message\"></span>\n   </label>\n</div>"
+      }
+    },
+    "GRID_PAGE_SIZE":15,
+    "MOCK_CONFIG": { "ignorePaths": ["192.168.2.200:81","localhost:46551"] }
+  },
+  "production": {
+    "ERUDITE_CONFIG": {
+      "baseUrl": "https://api.production.com/",
+      "gridPageSize": 15,
+      "xtForm" : {
+        "validationSummaryTemplate":
+                "<div data-ng-show=\"showErrors\">\n   <label class=\"error\" data-ng-repeat=\"error in errors\" data-key=\"{{error.key}}\">\n       <span data-ng-show=\"showLabel\" data-ng-bind=\"error.message\"></span>\n   </label>\n</div>"
+      }
+    },
+    "GRID_PAGE_SIZE":15,
+    "MOCK_CONFIG": { "ignorePaths": ["192.168.2.200:81","localhost:46551"] }
+  }
+}

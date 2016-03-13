@@ -1,0 +1,60 @@
+<div class="container-title">
+          <h3>Student Details</h3>
+    </div>
+<div class="row">
+
+    <div class="large-6 columns">
+
+      <fz-grid
+        model="model"
+        ongridload="onLoad()"
+        onrowclick="getStudents(row)">
+        <grid-pagination></grid-pagination>
+        <grid>
+          <grid-column title="Student ID" field="StudentIdentifier" filter="true"></grid-column>
+          <grid-column title="Student" field="Student" filter="true"></grid-column>
+          <grid-column title="Registration No" field="RegistrationNo" filter="true"></grid-column>
+          <grid-column title="RollNo" field="RollNo" filter="true"></grid-column>
+        </grid>
+      </fz-grid>
+
+    </div>
+    <div class="large-6 columns callout" >
+
+      <div ng-if="!isEditable">
+          <div class="fz-group">
+              <label>Name</label>
+              <div>{{Student.Name}}</div>
+          </div>
+          <div class="fz-group">
+              <label>Roll No</label>
+              <div>{{Student.RollNo}}</div>
+          </div>
+          <div class="fz-group">
+              <label>Reg No</label>
+              <div>{{Student.RegistrationNo}}</div>
+          </div>
+          <div class="fz-group">
+              <label>Batch</label>
+              <div>{{Student.BatchID}}</div>
+          </div>
+          <div class="fz-group">
+              <label>DOB</label>
+              <div>{{Student.DOB}}</div>
+          </div>
+          <div class="fz-group">
+              <label>Mobile</label>
+              <div>{{Student.FatherMobile}}</div>
+          </div>
+          <div class="fz-group">
+              <label>Address</label>
+              <div>{{Student.AddressDetail}}</div>
+          </div>
+          <div class="fz-group">
+              <label>Email</label>
+              <div>{{Student.Email}}</div>
+          </div>
+      </div>
+
+    </div>
+</div>

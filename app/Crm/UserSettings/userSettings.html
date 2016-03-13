@@ -1,0 +1,182 @@
+<form name="userSettings" novalidate="novalidate" xt-form class="fz-form">
+  <div class="fz-title padding p-small border">
+    <h2>GENERAL </h2>
+  </div>
+  <xt-validation-summary></xt-validation-summary>
+  <xt-server-validation-summary></xt-server-validation-summary <div>
+  <div class="flex-row">
+    <div class="flex-column">
+
+      <div class="fz-form-content border ">
+        <div class="fz-title fz-title-form">
+         <h2>USER DETAILS</h2>
+       </div>
+        <!-- <h2 class="fz-form-content-title">USER DETAILS</h2> -->
+        <div ng-if="!isEditable">
+          <div class="fz-group">
+            <label>Name</label>
+            <div>{{userSettings.Prefix}} {{userSettings.LastName}} {{userSettings.FirstName}} {{userSettings.MiddleName}} {{userSettings.Suffix}}</div>
+          </div>
+          <div class="fz-group">
+            <label>User Name</label>
+            <div> {{userSettings.UserName}}</div>
+          </div>
+
+          <div class="fz-group">
+            <label>Email</label>
+            <div>{{userSettings.Email}}</div>
+          </div>
+        </div>
+        <div ng-if="isEditable">
+
+          <div class="fz-group">
+            <label>Prefix </label>
+            <div>
+              <select class="group select2 " ng-model="userSettings.Prefix">
+                <option value="">Select</option>
+                <option>Dr.</option>
+                <option>Mrs.</option>
+                <option>Ms.</option>
+                <option>Mr.</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="fz-group">
+            <label>
+              First Name
+              <i class="req"></i>
+            </label>
+            <div>
+              <input name="firstname" id="firstname" type="text" ng-model="userSettings.FirstName" maxlength="255" required msg-required="First Name is mandatory" ng-minlength=2 msg-minlength="First Name must be more than 1 character" ng-maxlength=255 msg-maxlength="First Name must be less than 255 characters">
+            </div>
+          </div>
+
+          <div class="fz-group">
+            <label>Middle Name</label>
+            <div>
+              <input name="middlename" type="text" ng-model="userSettings.MiddleName" maxlength="255" ng-maxlength=255 msg-maxlength="Middle Name must be less than 255 characters">
+            </div>
+          </div>
+
+          <div class="fz-group">
+            <label>
+              Last Name
+              <i class="req"></i>
+            </label>
+            <div>
+              <input name="lastname" type="text" ng-model="userSettings.LastName" maxlength="255" required msg-required="Last Name is mandatory" ng-minlength=2 msg-minlength="Last Name must be more than 1 character" ng-maxlength=255 msg-maxlength="Last Name must be less than 255 characters">
+            </div>
+          </div>
+
+          <div class="fz-group">
+            <label>
+              Suffix
+            </label>
+            <div>
+              <input name="suffix" type="text" ng-model="userSettings.Suffix" ng-minlength=2 msg-minlength="Suffix must be more than 1 character" ng-maxlength=255 msg-maxlength="Suffix must be less than 255 characters">
+            </div>
+          </div>
+          <div class="fz-group">
+            <label>User Name</label>
+            <div> {{userSettings.UserName}}</div>
+          </div>
+          <div class="fz-group">
+            <label>Email</label>
+            <div>{{userSettings.Email}}</div>
+          </div>
+          <div class="fz-group">
+              <label>Default Profile<i class="req"></i> </label>
+              <div>
+                  <ui-select name="ProfileID" server-id="ProfileID"  ui-select-required="true" msg-ui-select-required="Default Profile is mandatory" ng-model="userSettings.DefaultProfileID" theme="select2">
+                      <ui-select-match>
+                          {{$select.selected.ProfileName}}
+                      </ui-select-match>
+                      <ui-select-choices repeat="defaultProfile.ProfileID as defaultProfile in availableProfiles | filter : $select.search">
+                          {{defaultProfile.ProfileName}}
+                      </ui-select-choices>
+                  </ui-select>
+              </div>
+          </div>
+          <div class="fz-group">
+              <label>
+                  Default Scheduler Location
+                  <i class="req" ></i>
+              </label>
+              <div>
+                  <ui-select name="UserSchedulerLocation" ui-select-required
+                             msg-ui-select-required="Default Locations is mandatory"
+
+                              server-id="InsufficientPrivilege"
+                             ng-model="userSettings.DefaultLocationID" theme="select2" style="width: 100%;" title="Choose Locations">
+                      <ui-select-match placeholder="Select Location" >
+                        <span>
+                            {{$select.selected.LocationName}}
+                        </span>
+                    </ui-select-match>
+                      <ui-select-choices repeat="defaultLocation.LocationID as defaultLocation in availableLocations | filter : $select.search">
+                          <span >
+                            {{defaultLocation.LocationName}}
+                        </span>
+                      </ui-select-choices>
+                  </ui-select>
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="flex-column">
+
+      <div class="fz-form-content border ">
+        <div class="fz-title fz-title-form">
+         <h2>CONTACT DETAILS</h2>
+       </div>
+        <!-- <h2 class="fz-form-content-title">CONTACT DETAILS</h2> -->
+        <div ng-if="!isEditable">
+          <fz-Address model="userSettings.AddressDetail" readonly required></fz-Address>
+          <div class="fz-group">
+            <label>Phone</label>
+            <fz-phone model="userSettings.Phone" readonly label="Phone"></fz-phone>
+          </div>
+          <div class="fz-group">
+            <label>Mobile</label>
+            <div>{{userSettings.Mobile}}</div>
+          </div>
+        </div>
+
+
+        <div ng-if="isEditable">
+          <fz-Address model="userSettings.AddressDetail" required></fz-Address>
+          <div class="fz-group">
+            <label>
+              Phone
+            </label>
+            <fz-phone model="userSettings.Phone" label="Phone"></fz-phone>
+          </div>
+
+          <div class="fz-group">
+            <label>Mobile</label>
+            <div>
+              <input name="Mobile" type="text" model-view-value="true" ui-mask="(999) 999-9999" ui-options="{clearOnBlur: false}" maxlength="14" ng-minlength=10 ng-maxlength=14 ng-model="userSettings.Mobile" msg-parse="Invalid Mobile" />
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ul class="fz-action flex-row align-end">
+    <li ng-if="isEditable">
+      <fz-cancel value="Cancel" function="resetForm()"></fz-cancel>
+    </li>
+    <li ng-if="isEditable">
+      <fz-submit value="Save" fz-ui-trim="EDIT" function="updateUserDetails()"></fz-submit>
+    </li>
+    <li ng-if="!isEditable" fz-ui-trim="EDIT"><a class="button-blue" ng-click="toggleViewMode(true)">Edit</a></li>
+  </ul>
+</form>

@@ -1,0 +1,16 @@
+﻿<div class="fz-dialog-header">
+    <h2>Session Timeout</h2>
+    <a class="dialog-close" ng-click="closeThisDialog();confirm(false)"><i class="fa fa-times"></i></a>
+</div>
+<div class="fz-dialog-content">
+    <div class="fz-dialog-content-inner">
+        <div class="padding p-large" style="font-size:1.1em">
+            The application has been idle for 30 minutes. Please click continue session to resume. Else, you will be logged out in <span class="color-red" style="font-weight:600">{{displayTimer}} minutes.</span>
+        </div>
+
+        <ul class="fz-action flex-row align-end">
+            <li><button type="button" class="fz-button fz-button-white-blue " ng-click="confirm(false);closeThisDialog()">Close</button></li>
+            <li><button type="button" class="fz-button fz-button-blue" ng-click="confirm(true);closeThisDialog()">Continue Session</button></li>
+        </ul>
+    </div>
+</div>

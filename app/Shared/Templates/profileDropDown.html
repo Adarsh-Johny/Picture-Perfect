@@ -1,0 +1,17 @@
+<li fz-dropdown="bottom-right">
+  <a class="fz-button" title="Home">
+    <i class="fa fa-user icon-large"></i>
+    <!-- <img src="/images/user-icon-header.png" /> -->
+  </a>
+  <div fz-dropdown-content>
+    <ul class="dropdown-menu">
+      <li ng-repeat="profile in AvailableProfiles" ng-class="profile.ProfileID === CurrentProfileID?'active':''">
+        <a ng-click="closeDropdown();SwitchProfile(profile.ProfileID,profile.ProfileName)">
+          {{profile.ProfileName}}
+          <i class="fa fa-check tick right" ng-if="profile.ProfileID === CurrentProfileID"></i>
+        </a>
+      </li>
+      <li><a ng-click="Logout()">Logout</a></li>
+    </ul>
+  </div>
+</li>

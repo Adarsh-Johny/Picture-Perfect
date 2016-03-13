@@ -1,0 +1,95 @@
+<div class="fz-grid">
+  <!-- <div class="fz-title padding p-small border flex-row" ng-hide="model.infiniteScroll">
+    <h2 ng-if="model.title" class="flex-column">{{model.title}}</h2>
+    <ul class="fz-action flex-row align-end flex-column"></ul>
+  </div> -->
+  <div class="fz-grid">
+    <table class="stack hover" ng-class="(gridrowselection||gridrowradiobtn) ? 'gridrowselection': '' ">
+      <thead>
+        <tr>
+          <th ng-repeat="col in model.cols | filter:{disable: false,permission:true}">{{col.title}}</th>
+        </tr>
+        <tr>
+          <th ng-repeat="col in model.cols | filter:{disable: false,permission:true}">
+            <span ng-if='col.filter == true'>
+              <input type="text" ng-model="model.filters[col.field]" ng-enter="filterChange()" />
+              <a class="grid-filter-button" ng-click="filterChange()"></a>
+            </span>
+            <span ng-if='col.field == "selectionFeature"'>
+              <input type="checkbox" ng-click="$event.stopPropagation();selectAll();" ng-checked="model.selectedRowsCount > 0 && model.selectedRowsCount == allRowsCount" indeterminate-checkbox="model.selectedRowsCount != 0  && model.selectedRowsCount != allRowsCount"
+              />
+            </span>
+            <tr ng-if='col.field == "Delete"'>
+              <th>Delete</th>
+            </tr>
+          </th>
+        </tr>
+      </thead>
+      <tbody ng-if="!model.infiniteScroll">
+        <tr ng-repeat="row in model.data" ng-click="rowClick(row)" ng-class="row.selected ? 'selected': '' ">
+          <td ng-repeat="col in model.cols | filter:{disable: false,permission:true}">
+            <span ng-if='(!(col.field === "selectionFeature" || col.field === "radioBtnFeature" || col.field === "Delete" )) && row[col.field] === undefined' style="color: red; float: left;">-- error --</span>
+
+            <span ng-if='col.field !== "selectionFeature"  || col.field !== "radioBtnFeature"'>{{row[col.field]}}</span>
+
+            <div ng-if='col.field == "selectionFeature" && !row.disableSelection' class="selection-checkbox-container" ng-click="$event.stopPropagation();">
+              <input type="checkbox" ng-model="row.selected" ng-click="rowCheckboxClickFunction(row);" />
+            </div>
+
+            <div ng-if='col.field == "radioBtnFeature" && !row.disableSelection' class="selection-checkbox-container" ng-click="$event.stopPropagation();">
+              <input type="radio" ng-click="radioButtonClick(row)" name="gridRadio" />
+            </div>
+
+            <div class="selection-checkbox-container" ng-if='col.field == "Delete"' ng-click="$event.stopPropagation();" style="text-align : center !important;">
+              <i  class="fa fa-times" style="color: #e0840b !important;" ng-click="execlinkClick(col.field,row)">  </i>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="infinite-container" ng-if="model.infiniteScroll && model.data.length !=0" pscroll fz-scroll-action="infiniteUpdate()">
+      <table class="grid" ng-class="(gridrowselection || gridrowradiobtn) ? 'gridrowselection': '' ">
+        <tbody>
+          <tr ng-repeat="row in model.data" ng-click="rowClick(row)" ng-class="row.selected ? 'selected': '' ">
+            <td ng-repeat="col in model.cols | filter:{disable: false,permission:true}">
+              <span ng-if='(!(col.field === "selectionFeature" || col.field === "radioBtnFeature" || col.field === "Delete" )) && row[col.field] === undefined' style="color: red">-- error --</span>
+
+              <span ng-if='col.field !== "selectionFeature" || col.field !== "radioBtnFeature" '>{{row[col.field]}}</span>
+
+              <div ng-if='col.field == "selectionFeature" && !row.disableSelection' class="selection-checkbox-container" ng-click="$event.stopPropagation();">
+                <input type="checkbox" ng-model="row.selected" ng-click="rowCheckboxClickFunction(row);" />
+              </div>
+
+              <div ng-if='col.field === "radioBtnFeature" && !row.disableSelection' class="selection-checkbox-container" ng-click="$event.stopPropagation();">
+                <input type="radio" ng-click="radioButtonClick(row)" name="gridRadio" />
+              </div>
+
+              <div class="selection-checkbox-container" ng-if='col.field == "Delete"' ng-click="$event.stopPropagation();" style="text-align : center !important;">
+                <i  class="fa fa-times" style="color: #e0840b !important;" ng-click="execlinkClick(col.field,row)">  </i>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-if="model.infiniteScroll && model.data.length==0">
+      <table class="grid">
+        <tbody>
+          <tr>
+            <td colspan="{{model.cols.length}}">
+              <p class="no-results-found">No Results Found</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ul class="pagination text-center " ng-if="model.pagination">
+    <li class="" ng-click="prevPage()"><a ng-disabled="model.gridPrevDisabled"><i class="fa fa-angle-left"></i></a></li>
+    <li class="fz-pagination-text" ng-if="model.gridTotalRecords > 0">{{model.gridFromRecord}} to {{model.gridToRecord}} of {{model.gridTotalRecords}} entries</li>
+    <li class="fz-pagination-text" ng-if="!model.gridTotalRecords || model.gridTotalRecords == 0 ">No Records found</li>
+    <li class="" ng-click="nextPage()"><a ng-disabled="model.gridNextDisabled"><i class="fa fa-angle-right"></i></a></li>
+  </ul>
+</div>

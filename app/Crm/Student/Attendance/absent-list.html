@@ -1,0 +1,161 @@
+﻿
+<div class="fz-form-content" id="documents-widget">
+
+    <form class="fz-form" name="recordAttendance" novalidate="novalidate" xt-form xt-form-server="{{ServerErrorMessages}}">
+        <xt-server-validation-summary></xt-server-validation-summary>
+        <xt-validation-summary></xt-validation-summary>
+        <div>
+            <div>
+                <div>
+                    <label>Date</label>
+                    <fz-date-e date-label="Date"
+                               date-model="attendanceModel.Date"
+                               date-config="{{dateOptionsDOB}}"
+                               date-required="true"
+                               message-required="Date is Required"
+                               message-pattern="Date is not Valid" datechange=""></fz-date-e>
+
+                </div>
+                <div>
+                    <label>Courses</label>
+                    <ui-select name="courses"
+                               ui-select-required="true"
+                               msg-ui-select-required="Courses is mandatory"
+                               ng-model="attendanceModel.CourseID"
+                               theme="select2"
+                               title="State">
+                        <ui-select-match>
+                            {{$select.selected.CourseName}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="course.CourseID as course in uiState.Courses  | filter: $select.search">
+                            {{course.CourseName}}
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div>
+                    <label>Divisions</label>
+                    <ui-select name="division"
+                               ng-model="attendanceModel.DivisionID"
+                               theme="select2"
+                               style="width: 100%;"
+                               sortable="true"
+                               title="Choose Division">
+                        <ui-select-match placeholder="Select Division">
+                            {{$select.selected.DivisionName}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="division.DivisionID as division in uiState.Divisions | filter:$select.search" allow-clear="true">
+                            {{division.DivisionName}}
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div>
+                    <label>Batches</label>
+                    <ui-select name="batches"
+                               ng-model="attendanceModel.BatchID"
+                               theme="select2"
+                               ui-select-required="true"
+                               msg-ui-select-required="Batches is mandatory"
+                               style="width: 100%;"
+                               sortable="true"
+                               title="Choose Batches">
+                        <ui-select-match placeholder="Select Batches">
+                            {{$select.selected.BatchStartYear}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="batch.BatchID as batch in uiState.Batches | filter:$select.search" allow-clear="true">
+                            {{batch.BatchStartYear}}
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+
+        </div>
+        <ul>
+            <li>
+                <fz-submit value="Get AbsentDetails"
+                           name="Get AbsentDetails"
+                           function="GetStudentAbsentDetailsForDay()">
+                </fz-submit>
+            </li>
+        </ul>
+
+        <!-- Grid Section -->
+        <div>
+            <div class="progress" style="width:40%;">
+                <div ng-repeat="schedule in ClassSchedules" style="position:relative;">
+
+                    <a ng-click="ClassScheduleChange(schedule.ClassScheduleID)" ng-class="{'schedule-active': schedule.ClassScheduleID==ClassScheduleID}" ng-class-odd='"progress-bar progress-bar-success"' data-toggle="tooltip" data-placement="left" title="{{schedule.Description}}" ng-class-even="'progress-bar progress-bar-warning'" role="progressbar" style="position:relative;width: {{((schedule.EndTimeSlot-schedule.StartTimeSlot)*14.28)}}%;">
+                        {{schedule.SubjectCode}}
+                        <span style="top:0px;position:absolute;color:#000000;display:block;left:3px;">{{schedule.StartTimeSlot}}</span><span style="padding-top:21px;position:absolute;">-</span>
+                        <span style="top:0px;position:absolute;color:#000000;display:block;right:3px;">{{schedule.EndTimeSlot}}</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div>
+
+            <div class="form-group">
+                <label>Search</label>
+                <input type="text" class="form-control" ng-model="searchText" />
+            </div>
+            <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                <tr>
+                    <th>
+                        <span class="th-text">
+                            Student Name
+                        </span>
+                    </th>
+                    <th>
+                        <span class="th-text">
+                            Roll No
+                        </span>
+                    </th>
+                    <th>
+                        <span class="th-text">
+                            Registration No
+                        </span>
+                    </th>
+                    <th>
+                        <span class="th-text">
+                            Absents
+                        </span>
+                    </th>
+                </tr>
+                <tr ng-repeat="row in Attendance | filter:searchText">
+                    <td>{{row.StudentName}}</td>
+                    <td>{{row.RollNo}}</td>
+                    <td>{{row.RegistrationNo}}</td>
+                    <td>
+
+                        <div class="progress" style="width:90%;">
+                            <div ng-repeat="schedule in ClassSchedules" style="position:relative;">
+                                <a class="progress-bar progress-bar-success" ng-class="{'schedule-active': arrayContains(schedule.ClassScheduleID,row.ClassScheduleIDList)}" data-toggle="tooltip" data-placement="left" title="{{schedule.Description}}" role="progressbar" style="position:relative;width: {{((schedule.EndTimeSlot-schedule.StartTimeSlot)*14.28)}}%;">
+                                    {{schedule.SubjectCode}}
+                                    @*<span style="top:0px;position:absolute;color:#000000;display:block;left:3px;">{{schedule.StartTimeSlot}}</span><span style="padding-top:21px;position:absolute;">-</span>
+                                    <span style="top:0px;position:absolute;color:#000000;display:block;right:3px;">{{schedule.EndTimeSlot}}</span>*@
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <fz-submit value="Send Notification" ng-if="Attendance"
+                       name="SaveAttendance"
+                       function="AddAbsentNotificationToQueue()">
+            </fz-submit>
+
+            <!--<fz-grid model="model"
+                     ongridload="onLoad()"
+                     onrowclick="ViewUploadErrors(row)">
+
+                <grid-pagination></grid-pagination>
+                <grid>
+                    <grid-column title="Date" field="LastUpdatedOn" filter="true"></grid-column>
+                    <grid-column title="Document Name" field="DocumentName" filter="true"></grid-column>
+                    <grid-column title="Upload Status" field="UploadStatus" filter="true"></grid-column>
+                    <grid-column title="Additional Info" field="Note" filter="true"></grid-column>
+                </grid>
+            </fz-grid>-->
+        </div>
+    </form>
+</div>

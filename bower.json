@@ -1,0 +1,36 @@
+{
+  "name": "EruditeApp",
+  "private": true,
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "scripts",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-cookies": "1.4.5",
+    "angular-messages": "~1.4.5",
+    "angular-mocks": "~1.4.5",
+    "angular-resource": "~1.4.5",
+    "angular-ui-date": "~0.0.8",
+    "angular-ui-mask": "~1.4.5",
+    "angular-ui-router": "~0.2.15",
+    "angular-ui-sortable": "~0.13.4",
+    "AngularJS-Toaster": "angularjs-toaster#~0.4.15",
+    "jquery": "~2.1.4",
+    "moment": "~2.10.6",
+    "ngDialog": "~0.5.1",
+    "ngDropover": "ngdropover#*",
+    "ngInfiniteScroll": "1.0.0",
+    "perfect-scrollbar": "~0.6.5",
+    "ui-select": "angular-ui-select#~0.12.1",
+    "angular-signalr-hub": "1.5.0"
+  },
+  "resolutions": {
+    "angular": ">= 1.0.8"
+  }
+}

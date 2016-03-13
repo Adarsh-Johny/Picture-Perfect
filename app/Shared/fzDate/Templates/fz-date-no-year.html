@@ -1,0 +1,22 @@
+<div>
+  <input
+    ng-show="dateReadonly == false && dateDisabled == false"
+    type="text"
+    name="date{{name}}"
+    class="fz-date"
+    model-view-value="true"
+    ui-mask="99/99"
+    ui-mask-placeholder
+    ui-mask-placeholder-char="_"
+    msg-parse="{{label}} is not valid"
+    ng-model="model"
+    ng-required="dateRequired"
+    msg-required="{{label}} is required"
+    ng-pattern="/^(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])$/"
+    msg-pattern="{{label}} is not valid"
+    placeholder="{{placeholder}}" />
+
+  <input ng-show="dateReadonly == true && dateDisabled == false" value="{{model}}" readonly />
+
+  <input ng-show="dateReadonly == false && dateDisabled == true" value="{{model}}" disabled />
+</div>

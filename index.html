@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!-- <link rel="shortcut icon" href="images/favicon.png" type="image/png"> -->
+    <title>Erudite - {{ $state.current.title }}</title>
+    <!-- Foundation 6 CSS Base-->
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/site.min.css" />
+
+    <!--  <link rel="stylesheet" href="css/libraries.min.css" />-->
+    <link rel="stylesheet" href="scripts/ngDialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="scripts/ngDialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="scripts/ui-select/dist/select.min.css" />
+    <!-- <link rel="stylesheet" href="scripts/jquery-ui/themes/smoothness/jquery-ui.css" /> -->
+    <link rel="stylesheet" href="scripts/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+    <!-- End Stylesheets -->
+    <!-- Start Application scripts-->
+    <script data-main="main.js" src="/scripts/requirejs/require.js"></script>
+    <!-- <script src="/scripts/foundation/foundation.min.js"></script> -->
+    <!-- End Application scripts-->  
+</head>
+<body>
+    <loading-indicator></loading-indicator>
+
+        <main class="page" ui-view></main>
+
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
+    <script>
+        var angularHelper = angularHelper || {};
+        angularHelper.$watchersCount = function () {
+            var root = angular.element(document.getElementsByTagName('body'));
+
+            var watchers = [];
+
+            var f = function (element) {
+                angular.forEach(['$scope', '$isolateScope'], function (scopeProperty) {
+                    if (element.data() && element.data().hasOwnProperty(scopeProperty)) {
+                        angular.forEach(element.data()[scopeProperty].$$watchers, function (watcher) {
+                            watchers.push(watcher);
+                        });
+                    }
+                });
+
+                angular.forEach(element.children(), function (childElement) {
+                    f(angular.element(childElement));
+                });
+            };
+
+            f(root);
+
+            // Remove duplicate watchers
+            var watchersWithoutDuplicates = [];
+            angular.forEach(watchers, function (item) {
+                if (watchersWithoutDuplicates.indexOf(item) < 0) {
+                    watchersWithoutDuplicates.push(item);
+                }
+            });
+
+            console.log("$$watchers:", watchersWithoutDuplicates.length);
+        }
+        // $(document).foundation();
+
+    </script>
+</body>
+</html>

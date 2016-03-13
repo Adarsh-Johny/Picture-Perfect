@@ -1,0 +1,102 @@
+<div fz-dropdown="bottom-left">
+  <style>
+    .ui-tabs .active {
+      background-color: seagreen;
+    }
+  </style>
+  <a ng-click="getPayorSnapshotDetails(id)">{{value}}</a>
+  <div fz-dropdown-content class="border-blue" style="width: 500px;">
+    <div class="fz-title fz-title-group p-medium">
+      <h2>{{PayorSnapshot.Heading.PayorName}} ({{PayorSnapshot.Heading.PlanType}})</h2>
+
+    </div>
+    <div class="flex-row">
+      <ul style="padding: 10px; border-right: solid 1px #ccc" class="ui-tabs">
+        <li ng-class="tab.active=='PLAN'?'active':''" ng-click="tab.active='PLAN'"><a>PLAN</a></li>
+        <li ng-class="tab.active=='PAYOR'?'active':''" ng-click="tab.active='PAYOR'"><a>PAYOR</a></li>
+        <li ng-class="tab.active=='BENEFITS'?'active':''" ng-click="tab.active='BENEFITS'"><a>BENEFITS</a></li>
+        <li ng-class="tab.active=='NOTES'?'active':''" ng-click="tab.active='NOTES'"><a>NOTES</a></li>
+      </ul>
+      <!-- PLAN -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='PLAN'">
+        <div class="fz-group">
+          <label>Name</label>
+          <div>{{PayorSnapshot.Plan.PlanName}}</div>
+        </div>
+        <div class="fz-group">
+          <label> Group No.</label>
+          <div>{{PayorSnapshot.Plan.GroupNo}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Capitation Fee</label>
+          <div>{{PayorSnapshot.Plan.CapitationFee}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Employer</label>
+          <div>{{PayorSnapshot.Plan.EmployerName}}</div>
+        </div>
+      </div>
+      <!-- PLAN -->
+      <!-- PAYOR -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='PAYOR'">
+        <div class="fz-group">
+          <label>Payor ID</label>
+          <div>{{PayorSnapshot.Payor.PayorIdentifier}}</div>
+        </div>
+        <div class="fz-group">
+          <label> Address</label>
+          <div>
+            {{PayorSnapshot.Payor.Address.AddressLine1}}
+            <br ng-hide="PayorSnapshot.Payor.Address.AddressLine2.length==0" /> {{PayorSnapshot.Payor.Address.AddressLine2}}
+            <br> {{PayorSnapshot.Payor.Address.City}}{{PayorSnapshot.Payor.Address.City?', ':''}}{{PayorSnapshot.Payor.Address.State}}{{PayorSnapshot.Payor.Address.State?' - ':''}}{{PayorSnapshot.Payor.Address.ZipCode}}
+            <br>
+          </div>
+        </div>
+        <div class="fz-group">
+          <label>Website</label>
+          <div>{{PayorSnapshot.Payor.Website}}</div>
+        </div>
+      </div>
+      <!-- PAYOR -->
+      <!-- BENEFITS -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='BENEFITS'">
+        <div class="fz-group">
+          <label>Family Maximum</label>
+          <div>{{PayorSnapshot.Benefits.FamilyMaximum}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Individual Maximum</label>
+          <div>{{PayorSnapshot.Benefits.IndividualMaximum}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Family Deductible</label>
+          <div>{{PayorSnapshot.Benefits.FamilyDeductible}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Individual Deductible</label>
+          <div>{{PayorSnapshot.Benefits.EmployerName}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Individual Ortho Maximum</label>
+          <div>{{PayorSnapshot.Benefits.IndividualOrthoMaximum}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Individual Ortho Deductible</label>
+          <div>{{PayorSnapshot.Benefits.IndividualOrthoDeductible}}</div>
+        </div>
+        <div class="fz-group">
+          <label>Individual Ortho Age Limit</label>
+          <div>{{PayorSnapshot.Benefits.IndividualOrthoAgeLimit}}</div>
+        </div>
+      </div>
+      <!-- BENEFITS -->
+      <!-- NOTES -->
+      <div class="flex-column padding p-medium" ng-if="tab.active=='NOTES'">
+        <div class="fz-group">
+          <div>{{PayorSnapshot.Notes.Notes}}</div>
+        </div>
+      </div>
+      <!-- NOTES -->
+    </div>
+  </div>
+</div>

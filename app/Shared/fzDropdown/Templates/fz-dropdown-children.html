@@ -1,0 +1,6 @@
+<li ng-class="{active:child.Selected}" ng-show="HasPermission" 
+    class="fz-dropdown {{PositionHorizontal}}-{{PositionVertical}}">
+    <a ng-if="child.Children && childPermission"><i class="fa fa-angle-{{PositionHorizontal}} {{PositionHorizontal}}"></i>{{child.Name}}</a>
+    <a ng-click="closeDropdown();$event.stopPropagation()" ng-if="!(child.Children && childPermission)">{{child.Name}}</a>
+    <span ng-if="child.Children && childPermission" class="fz-dropdown-arrow"></span>
+</li>

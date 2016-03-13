@@ -1,0 +1,59 @@
+<div class="fz-sidebar">
+  <div class="fz-user-panel padding p-medium border flex-row">
+    <div class="fz-user-image fz-user-image-blue  fz-user-image-no-border">
+      <img src="/images/user.jpg">
+      <a class="fz-user-image-edit">Edit</a>
+    </div>
+    <div class="fz-user-panel-text">
+      <h2 class="color-dark">Elizabeth Laura</h2>
+      <span class="user-label color-green border-green">Patient</span>
+    </div>
+  </div>
+  <div class="fz-sidebar-menu-wrapper border">
+    <ul class="fz-sidebar-menu">
+      <li ui-sref-active="active"><a ui-sref=".overview"><i class="fa fa-fw fa-eye"></i>Overview</a></li>
+      <accordion data="{SectionName:'General',PrivilegeID : 29,
+       SectionIcon: 'fa fa-fw fa-code',
+       SubSection: [{Name:'Basic Information',Link:'.basicinfo',PrivilegeID : 29},
+                    {Name:'Medical Alerts',Link:'.medicalalertview',PrivilegeID : 29},
+                    {Name:'Responsible Party',Link:'.responsibleparty',PrivilegeID : 29},
+                    {Name:'Insurances',Link:'.insurance',PrivilegeID : 29},
+                    {Name:'Account',Link:'.account',PrivilegeID :29}]}">
+      </accordion>
+    </ul>
+    <div class="divider"></div>
+    <ul class="fz-sidebar-menu">
+      <accordion data="{SectionName:'Calendar',
+       SectionIcon: 'fa fa-fw fa-code',
+       SubSection: [{Name:'Scheduler',Link:'#'},
+                    {Name:'My Appointments',Link:'#'}]}">
+      </accordion>
+      <li ui-sref-active="active"><a ui-sref=".treatmentplan"><i class="fa fa-fw fa-credit-card"></i>Treatment Plan</a></li>
+      <li ui-sref-active="active" privilege-id="41" fz-ui-trim="VIEW"><a ui-sref=".appointments"><i class="fa fa-fw fa-calendar"></i>Appointments</a></li>
+        <li ui-sref-active="active" privilege-id="53" fz-ui-trim="VIEW"><a ui-sref=".notes"><i class="fa fa-fw fa-calendar"></i>Notes</a></li>
+      <accordion data="{SectionName:'Billing',
+       SectionIcon: 'fa fa-fw fa-code',
+       SubSection: [{Name:'All Claims',Link:'#'},
+                    {Name:'Line Item Payments',Link:'#'},
+                    {Name:'Transactions',Link:'#'},
+                    {Name:'Receivables',Link:'#'},
+                    {Name:'Receipts',Link:'#'}]}">
+      </accordion>
+      <li ui-sref-active="active"><a href="user-authorization"><i class="fa fa-fw fa-unlock-alt"></i>Authorization</a></li>
+      <li ui-sref-active="active" ng-if="CheckPrivilege(52)"><a ui-sref=".eligibility"><i class="fa fa-fw fa-university"></i>Eligibility</a></li>
+    </ul>
+    <div class="divider"></div>
+    <ul class="fz-sidebar-menu">
+      <accordion data="{SectionName:'To Do',
+       SectionIcon: 'fa fa-fw fa-cog',
+       SubSection: [{Name:'Assigned To Me',Link:'#'},
+                    {Name:'Requested By Me',Link:'#'}]}">
+      </accordion>
+      <li ui-sref-active="active"><a ui-sref=".alert"><i class="fa fa-fw fa-users"></i>Alerts</a></li>
+      <li ui-sref-active="active" ng-if="CheckPrivilege(51)"><a ui-sref=".prescriptions"><i class="fa fa-fw fa-users"></i>Prescription</a></li>
+      <li ui-sref-active="active"><a href=""><i class="fa fa-fw fa-book"></i>Communication</a></li>
+      <li ui-sref-active="active" ng-if="CheckPrivilege(50)"><a ui-sref=".documents"><i class="fa fa-fw fa-file-text-o"></i>Documents</a></li>
+      <li ui-sref-active="active"><a href=""><i class="fa fa-fw fa-phone"></i>Reports</a></li>
+    </ul>
+  </div>
+</div>

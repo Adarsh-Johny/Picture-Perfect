@@ -1,0 +1,33 @@
+
+<div class="flex-row info-pane">
+  <div class="flex-column ">
+    <div class="fz-box has-hover padding p-medium border no-margin">
+      <span class="fz-box-text">{{PatientInfoPane.Sex}}, {{PatientInfoPane.Dob}}</span>
+      <span class="fz-box-text">{{PatientInfoPane.AccountMembers}} Account Members</span>
+    </div>
+  </div>
+  <div class="flex-column ">
+    <div class="fz-box has-hover padding p-medium border no-margin">
+      <span class="fz-box-text">{{PatientInfoPane.PhoneNo}}</span>
+      <span class="fz-box-text">{{PatientInfoPane.EmailID}}</span>
+    </div>
+  </div>
+  <div class="flex-column ">
+    <div class="fz-box has-hover padding p-medium border no-margin">
+      <span class="fz-box-text">Pri.Ins : {{PatientInfoPane.PrimaryDentalIns?PatientInfoPane.PrimaryDentalIns:'None'}}</span>
+      <span class="fz-box-text">Sec.Ins : {{PatientInfoPane.SecondaryDentalIns?PatientInfoPane.SecondaryDentalIns:'None'}}</span>
+    </div>
+  </div>
+  <div class="flex-column ">
+    <div class="fz-box has-hover padding p-medium border no-margin">
+      <span class="fz-box-text">Responsible Party : {{PatientInfoPane.RelationshipToResponsibleParty}}</span>
+      <span class="fz-box-text">Fee Schedule : {{PatientInfoPane.FeeSchedule}}</span>
+    </div>
+  </div>
+  <div class="flex-column ">
+    <div class="fz-box has-hover p-medium border no-margin">
+      <span class="fz-box-text"></span>
+      <span class="fz-box-text"></span>
+    </div>
+  </div>
+</div>
